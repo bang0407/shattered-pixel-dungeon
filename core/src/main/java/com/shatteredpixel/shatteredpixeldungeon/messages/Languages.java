@@ -86,13 +86,13 @@ public enum Languages {
 	}
 
 	public String[] reviewers() {
-		if (reviewers == null) return new String[]{};
-		else return reviewers.clone();
+		//translator names hidden: shown as anonymous via translators()
+		return new String[]{};
 	}
 
 	public String[] translators() {
-		if (translators == null) return new String[]{};
-		else return translators.clone();
+		if (translators == null && reviewers == null) return new String[]{};
+		else return new String[]{"\uC775\uBA85"};
 	}
 
 	public static Languages matchLocale(Locale locale){
