@@ -46,11 +46,8 @@ public class WndSupportPrompt extends Window {
 		add(title);
 
 		String message = Messages.get(WndSupportPrompt.class, "intro");
-		message += "\n\n" + Messages.get(SupporterScene.class, "patreon_msg");
-		if (Messages.lang() != Languages.ENGLISH) {
-			message += "\n" + Messages.get(SupporterScene.class, "patreon_english");
-		}
-		message += "\n- Evan";
+		message += "\n\n" + Messages.get(SupporterScene.class, "intro");
+		message += "\n\n- bang";
 
 		RenderedTextBlock text = PixelScene.renderTextBlock( 6 );
 		text.text( message, width );
@@ -71,7 +68,9 @@ public class WndSupportPrompt extends Window {
 				WndSupportPrompt.super.hide();
 			}
 		};
-		link.setRect(0, text.bottom() + 4, width, 18);
+		//portfolio project: no donation link
+		link.visible = link.active = false;
+		link.setRect(0, text.bottom(), width, 0);
 		add(link);
 
 		RedButton close = new RedButton(Messages.get(this, "close")){
@@ -82,7 +81,7 @@ public class WndSupportPrompt extends Window {
 				WndSupportPrompt.super.hide();
 			}
 		};
-		close.setRect(0, link.bottom() + 2, width, 18);
+		close.setRect(0, text.bottom() + 4, width, 18);
 		add(close);
 
 		resize(width, (int)close.bottom());
