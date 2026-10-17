@@ -63,7 +63,7 @@ runtime {
 
     jpackage {
         mainClass = appMainClass
-        appVersion = (appVersionName =~ /\d+\.\d+\.\d+/)[0]
+        appVersion = '0.1.0' //jpackage needs x.y.z
         imageName = 'BangPixelDungeon'
     }
 
