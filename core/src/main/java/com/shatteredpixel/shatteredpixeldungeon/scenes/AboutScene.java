@@ -67,9 +67,9 @@ public class AboutScene extends PixelScene {
 		//*** Shattered Pixel Dungeon Credits ***
 
 		CreditsBlock shpx = new CreditsBlock(true, Window.SHPX_COLOR,
-				"Shattered Pixel Dungeon",
+				"bang's \uD53D\uC140 \uB358\uC804",
 				Icons.SHPX.get(),
-				"Developed by: _Evan Debenham_\nBased on Pixel Dungeon's open source",
+				"\uAC1C\uBC1C: _Bang_\n\uC6D0\uC791: Shattered Pixel Dungeon\n\uC6D0\uC791\uC790 (_Evan Debenham_)",
 				"ShatteredPixel.com",
 				"https://ShatteredPixel.com");
 		if (landscape()){
@@ -82,7 +82,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock aleks = new CreditsBlock(false, Window.SHPX_COLOR,
 				"Splash & Dungeon Art:",
 				Icons.ALEKS.get(),
-				"Aleksandar Komitov",
+				"\uC6D0\uC791\uC790 (Aleksandar Komitov)",
 				"alekskomitov.com",
 				"https://www.alekskomitov.com/");
 		aleks.setSize(colWidth/2f, 0);
@@ -96,7 +96,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock lumine = new CreditsBlock(false, Window.SHPX_COLOR,
 				"Composer:",
 				Icons.LUMINE.get(),
-				"Lumine Haaristo",
+				"\uC6D0\uC791\uC790 (Lumine Haaristo)",
 				"youtube.com/@Lumine...",
 				"https://www.youtube.com/@LumineThomasHaaristo");
 		lumine.setRect(aleks.right(), aleks.top(), colWidth/2f, 0);
@@ -105,7 +105,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock pumpkin = new CreditsBlock(false, Window.SHPX_COLOR,
 				"Item Pixel Art:",
 				Icons.PUMPKINVOLT.get(),
-				"PumpkinVolt",
+				"\uC6D0\uC791\uC790 (PumpkinVolt)",
 				null,
 				null);
 		pumpkin.setSize(colWidth/2f, 0);
@@ -115,7 +115,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock celesti = new CreditsBlock(false, Window.SHPX_COLOR,
 				"Sound Effects:",
 				Icons.CELESTI.get(),
-				"Celesti",
+				"\uC6D0\uC791\uC790 (Celesti)",
 				"celesti-whispers.itch.io",
 				"https://celesti-whispers.itch.io/");
 		celesti.setRect(pumpkin.right(), pumpkin.top(), colWidth/2f, 0);
@@ -124,7 +124,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock alastair = new CreditsBlock(false, Window.SHPX_COLOR,
 				"Additional Pixel Art:",
 				Icons.ALASTAIR.get(),
-				"Alastair Braun",
+				"\uC6D0\uC791\uC790 (Alastair Braun)",
 				null,
 				null);
 		alastair.setSize(colWidth/2f, 0);
@@ -137,7 +137,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock wata = new CreditsBlock(true, WATA_COLOR,
 				"Pixel Dungeon",
 				Icons.WATA.get(),
-				"Developed by: _Watabou_\nInspired by Brian Walker's Brogue",
+				"\uC6D0\uC791\uC790 (_Watabou_)\nInspired by Brian Walker's Brogue",
 				"watabou.itch.io",
 				"https://watabou.itch.io/");
 		if (landscape()){
@@ -152,7 +152,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock cube = new CreditsBlock(false, WATA_COLOR,
 				"Music:",
 				Icons.CUBE_CODE.get(),
-				"Cube Code",
+				"\uC6D0\uC791\uC790 (Cube Code)",
 				null,
 				null);
 		cube.setSize(colWidth/2f, 0);
@@ -185,7 +185,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock arcnor = new CreditsBlock(false, GDX_COLOR,
 				"Pixel Dungeon GDX:",
 				Icons.ARCNOR.get(),
-				"Edu García",
+				"\uC6D0\uC791\uC790 (Edu Garc\u00EDa)",
 				"gamedev.place/@arcnor",
 				"https://mastodon.gamedev.place/@arcnor");
 		arcnor.setSize(colWidth/2f, 0);
@@ -199,7 +199,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock purigro = new CreditsBlock(false, GDX_COLOR,
 				"Shattered GDX Help:",
 				Icons.PURIGRO.get(),
-				"Kevin MacMartin",
+				"\uC6D0\uC791\uC790 (Kevin MacMartin)",
 				"github.com/prurigro",
 				"https://github.com/prurigro/");
 		purigro.setRect(arcnor.right()+2, arcnor.top(), colWidth/2f, 0);
