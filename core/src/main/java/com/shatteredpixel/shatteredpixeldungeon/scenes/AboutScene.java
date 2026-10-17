@@ -64,19 +64,6 @@ public class AboutScene extends PixelScene {
 		Component content = list.content();
 		content.clear();
 
-		//*** bang's Pixel Dungeon Credits ***
-
-		CreditsBlock bang = new CreditsBlock(true, 0xFF5533,
-				"bang's \uD53D\uC140 \uB358\uC804",
-				null,
-				"\uB9CC\uB4E0 \uC0AC\uB78C: _bang_\nShattered Pixel Dungeon \uAE30\uBC18 (GPL-3.0)",
-				"github.com/bang0407/shattered-pixel-dungeon",
-				"https://github.com/bang0407/shattered-pixel-dungeon");
-		bang.setRect((w - colWidth)/2f, insets.top + 6, colWidth, 0);
-		content.add(bang);
-
-		final float top = bang.bottom() + 12;
-
 		//*** Shattered Pixel Dungeon Credits ***
 
 		CreditsBlock shpx = new CreditsBlock(true, Window.SHPX_COLOR,
@@ -86,9 +73,9 @@ public class AboutScene extends PixelScene {
 				"ShatteredPixel.com",
 				"https://ShatteredPixel.com");
 		if (landscape()){
-			shpx.setRect((w - fullWidth)/2f - 6, top + 20, 120, 0);
+			shpx.setRect((w - fullWidth)/2f - 6, insets.top + 26, 120, 0);
 		} else {
-			shpx.setRect((w - fullWidth)/2f, top, 120, 0);
+			shpx.setRect((w - fullWidth)/2f, insets.top + 6, 120, 0);
 		}
 		content.add(shpx);
 
@@ -100,7 +87,7 @@ public class AboutScene extends PixelScene {
 				"https://www.alekskomitov.com/");
 		aleks.setSize(colWidth/2f, 0);
 		if (landscape()){
-			aleks.setPos(shpx.right(), top);
+			aleks.setPos(shpx.right(), insets.top+6);
 		} else {
 			aleks.setPos(w/2f - colWidth/2f, shpx.bottom()+6);
 		}
