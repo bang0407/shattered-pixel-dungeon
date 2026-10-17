@@ -94,9 +94,11 @@ public class SupporterScene extends PixelScene {
 		link.icon(Icons.get(Icons.GOLD));
 		link.textColor(Window.TITLE_COLOR);
 		link.setSize(elementWidth, BTN_HEIGHT);
+		//portfolio project: no donation link
+		link.visible = link.active = false;
 		add(link);
 
-		float elementHeight = msg.height() + BTN_HEIGHT + GAP;
+		float elementHeight = msg.height();
 
 		float top = insets.top + 16 + (h - 16 - elementHeight)/2f;
 		float left = insets.left + (w-elementWidth)/2f;
@@ -126,11 +128,7 @@ public class SupporterScene extends PixelScene {
 			add(bg);
 
 			String message = Messages.get(SupporterScene.class, "intro");
-			message += "\n\n" + Messages.get(SupporterScene.class, "patreon_msg");
-			if (Messages.lang() != Languages.ENGLISH) {
-				message += "\n" + Messages.get(SupporterScene.class, "patreon_english");
-			}
-			message += "\n\n- Evan";
+			message += "\n\n- bang";
 
 			text = PixelScene.renderTextBlock(message, 6);
 			add(text);
