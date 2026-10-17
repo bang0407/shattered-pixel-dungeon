@@ -69,7 +69,7 @@ public class AboutScene extends PixelScene {
 		CreditsBlock shpx = new CreditsBlock(true, Window.SHPX_COLOR,
 				"Shattered Pixel Dungeon",
 				Icons.SHPX.get(),
-				"Developed by: _Evan Debenham_\nBased on Pixel Dungeon's open source",
+				"\uAC1C\uBC1C: _Bang_\nBased on Pixel Dungeon's open source",
 				"ShatteredPixel.com",
 				"https://ShatteredPixel.com");
 		if (landscape()){
