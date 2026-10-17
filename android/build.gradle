@@ -13,7 +13,7 @@ android {
     }
 
     defaultConfig {
-        manifestPlaceholders = [appName:appName]
+        manifestPlaceholders = [appName:appName.replace("'", "\\'")]
         applicationId appPackageName
 
         versionCode appVersionCode
