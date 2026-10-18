@@ -141,6 +141,8 @@ public class NewsScene extends PixelScene {
 					rightCol = !rightCol;
 				}
 			}
+			//landscape with an odd number of notices: the last row was never closed
+			if (rightCol) top += BTN_HEIGHT;
 			top += gap;
 		} else {
 			top += 20;
