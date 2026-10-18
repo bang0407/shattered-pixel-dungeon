@@ -1,7 +1,13 @@
 name: Build
 on:
   push:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
   workflow_dispatch:
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   android:
     runs-on: ubuntu-latest
@@ -27,6 +33,10 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: gradle/actions/setup-gradle@v4
+      - uses: actions/cache@v4
+        with:
+          path: desktop/build/jdks
+          key: jdk-win-${{ hashFiles('desktop/build.gradle') }}
       - run: ./gradlew.bat desktop:jpackageImage
       - uses: actions/upload-artifact@v4
         with:
