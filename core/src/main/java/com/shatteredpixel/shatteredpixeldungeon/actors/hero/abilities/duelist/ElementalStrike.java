@@ -90,6 +90,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Shocki
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Vampiric;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Venomous;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Drowsy;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Vorpal;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
@@ -121,6 +122,7 @@ public class ElementalStrike extends ArmorAbility {
 		effectTypes.put(Kinetic.class,      MagicMissile.FORCE_CONE);
 		effectTypes.put(Shocking.class,     MagicMissile.SPARK_CONE);
 		effectTypes.put(Venomous.class,     MagicMissile.POISON_CONE);
+		effectTypes.put(Drowsy.class,       MagicMissile.MAGIC_MISS_CONE);
 		effectTypes.put(Blocking.class,     MagicMissile.WARD_CONE);
 		effectTypes.put(Blooming.class,     MagicMissile.FOLIAGE_CONE);
 		effectTypes.put(Eldritch.class,     MagicMissile.SHADOW_CONE);
@@ -413,6 +415,14 @@ public class ElementalStrike extends ArmorAbility {
 			//clear stored damage if there was no primary target
 			if (primaryTarget == null && hero.buff(Kinetic.ConservedDamage.class) != null){
 				hero.buff(Kinetic.ConservedDamage.class).detach();
+			}
+
+		//*** Drowsy (bang's) ***
+		} else if (ench instanceof Drowsy){
+			for (Char ch : affected){
+				if (ch != primaryTarget && Random.Float() < 0.5f*powerMulti) {
+					Drowsy.putToSleep(ch);
+				}
 			}
 
 		//*** Venomous **

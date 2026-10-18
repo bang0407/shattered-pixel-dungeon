@@ -98,11 +98,10 @@ public class ScrollOfUpgrade extends InventoryScroll {
 			} else if (w.cursedKnown && wasCursed && !w.cursed){
 				weakenCurse( Dungeon.hero );
 			}
-			if (wasHardened && !w.enchantHardened){
-				GLog.w( Messages.get(Weapon.class, "hardening_gone") );
-			} else if (hadGoodEnchant && !w.hasGoodEnchant()){
-				GLog.w( Messages.get(Weapon.class, "incompatible") );
-			}
+			//bang's: every scroll of upgrade also rolls a new random trait (enchantment) on weapons
+			w.enchant();
+			w.enchantHardened = false;
+			GLog.p( Messages.get(this, "new_trait", Messages.titleCase(w.enchantment.name())) );
 
 		} else if (item instanceof Armor){
 			Armor a = (Armor) item;

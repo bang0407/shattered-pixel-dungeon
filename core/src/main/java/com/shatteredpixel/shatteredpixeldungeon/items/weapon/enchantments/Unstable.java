@@ -45,6 +45,7 @@ public class Unstable extends Weapon.Enchantment {
 			Shocking.class,
 			Vampiric.class,
 			Venomous.class,
+			Drowsy.class,
 			Vorpal.class,
 			Eldritch.class
 	};
