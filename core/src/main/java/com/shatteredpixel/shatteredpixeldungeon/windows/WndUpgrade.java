@@ -433,6 +433,25 @@ public class WndUpgrade extends Window {
 			protected void onClick() {
 				super.onClick();
 
+				//bang's: scroll of upgrade rerolls weapon traits, so confirm before losing a good one
+				if (upgrader instanceof ScrollOfUpgrade && toUpgrade instanceof Weapon
+						&& ((Weapon) toUpgrade).hasGoodEnchant()){
+					GameScene.show(new WndOptions(
+							Messages.titleCase(toUpgrade.name()),
+							Messages.get(WndUpgrade.class, "trait_confirm", Messages.titleCase(((Weapon) toUpgrade).enchantment.name())),
+							Messages.get(WndUpgrade.class, "upgrade"),
+							Messages.get(WndUpgrade.class, "back")){
+						@Override
+						protected void onSelect(int index) {
+							if (index == 0) doUpgrade();
+						}
+					});
+				} else {
+					doUpgrade();
+				}
+			}
+
+			private void doUpgrade() {
 				ScrollOfUpgrade.upgrade(Dungeon.hero);
 
 				Item upgraded = toUpgrade;
