@@ -12,7 +12,7 @@ allprojects {
 
     ext {
         appName = "bang's \uD53D\uC140 \uB358\uC804"
-        appPackageName = 'com.shatteredpixel.shatteredpixeldungeon'
+        appPackageName = 'com.bang.bangspixeldungeon'
 
         //Full releases gets +2 on version code, needed for an F-Droid quirk
         appVersionCode = 922
