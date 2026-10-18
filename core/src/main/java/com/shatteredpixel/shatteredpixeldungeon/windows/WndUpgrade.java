@@ -417,6 +417,11 @@ public class WndUpgrade extends Window {
 			}
 		}
 
+		//bang's: show which trait the scroll of upgrade will give
+		if (upgrader instanceof ScrollOfUpgrade && toUpgrade instanceof Weapon){
+			bottom = addMessage(Messages.get(this, "next_trait", Messages.titleCase(((Weapon) toUpgrade).nextTrait().name())), CharSprite.POSITIVE, bottom);
+		}
+
 		//warning relating to arcane resin
 		if (toUpgrade instanceof Wand && ((Wand) toUpgrade).resinBonus > 0){
 			bottom = addMessage(Messages.get(this, "resin"), CharSprite.WARNING, bottom);
@@ -438,7 +443,7 @@ public class WndUpgrade extends Window {
 						&& ((Weapon) toUpgrade).hasGoodEnchant()){
 					GameScene.show(new WndOptions(
 							Messages.titleCase(toUpgrade.name()),
-							Messages.get(WndUpgrade.class, "trait_confirm", Messages.titleCase(((Weapon) toUpgrade).enchantment.name())),
+							Messages.get(WndUpgrade.class, "trait_confirm", Messages.titleCase(((Weapon) toUpgrade).enchantment.name()), Messages.titleCase(((Weapon) toUpgrade).nextTrait().name())),
 							Messages.get(WndUpgrade.class, "upgrade"),
 							Messages.get(WndUpgrade.class, "back")){
 						@Override

@@ -99,7 +99,8 @@ public class ScrollOfUpgrade extends InventoryScroll {
 				weakenCurse( Dungeon.hero );
 			}
 			//bang's: every scroll of upgrade also rolls a new random trait (enchantment) on weapons
-			w.enchant();
+			w.enchant( w.nextTrait() );
+			w.nextTrait = null;
 			w.enchantHardened = false;
 			GLog.p( Messages.get(this, "new_trait", Messages.titleCase(w.enchantment.name())) );
 

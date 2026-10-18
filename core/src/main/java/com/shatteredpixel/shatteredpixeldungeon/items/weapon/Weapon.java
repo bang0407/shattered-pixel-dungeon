@@ -220,6 +220,7 @@ abstract public class Weapon extends KindOfWeapon {
 	private static final String AVAILABLE_USES  = "available_uses";
 	private static final String ENCHANTMENT	    = "enchantment";
 	private static final String ENCHANT_HARDENED = "enchant_hardened";
+	private static final String NEXT_TRAIT       = "next_trait";
 	private static final String CURSE_INFUSION_BONUS = "curse_infusion_bonus";
 	private static final String MASTERY_POTION_BONUS = "mastery_potion_bonus";
 	private static final String AUGMENT	        = "augment";
@@ -231,6 +232,7 @@ abstract public class Weapon extends KindOfWeapon {
 		bundle.put( AVAILABLE_USES, availableUsesToID );
 		bundle.put( ENCHANTMENT, enchantment );
 		bundle.put( ENCHANT_HARDENED, enchantHardened );
+		if (nextTrait != null) bundle.put( NEXT_TRAIT, nextTrait );
 		bundle.put( CURSE_INFUSION_BONUS, curseInfusionBonus );
 		bundle.put( MASTERY_POTION_BONUS, masteryPotionBonus );
 		bundle.put( AUGMENT, augment );
@@ -243,6 +245,7 @@ abstract public class Weapon extends KindOfWeapon {
 		availableUsesToID = bundle.getFloat( AVAILABLE_USES );
 		enchantment = (Enchantment)bundle.get( ENCHANTMENT );
 		enchantHardened = bundle.getBoolean( ENCHANT_HARDENED );
+		nextTrait = bundle.contains( NEXT_TRAIT ) ? (Enchantment)bundle.get( NEXT_TRAIT ) : null;
 		curseInfusionBonus = bundle.getBoolean( CURSE_INFUSION_BONUS );
 		masteryPotionBonus = bundle.getBoolean( MASTERY_POTION_BONUS );
 
@@ -462,6 +465,19 @@ abstract public class Weapon extends KindOfWeapon {
 			Statistics.itemTypesDiscovered.add(ench.getClass());
 		}
 		return this;
+	}
+
+	//bang's: the trait the next scroll of upgrade will give. Rolled once and saved,
+	//so cancelling the upgrade window can't be used to reroll it.
+	public Enchantment nextTrait;
+
+	public Enchantment nextTrait() {
+		//reroll if the weapon's trait was changed some other way and now matches
+		if (nextTrait == null || (enchantment != null && nextTrait.getClass() == enchantment.getClass())) {
+			Class<? extends Enchantment> oldEnchantment = enchantment != null ? enchantment.getClass() : null;
+			nextTrait = Enchantment.random( oldEnchantment );
+		}
+		return nextTrait;
 	}
 
 	public Weapon enchant() {
