@@ -23,8 +23,21 @@ android {
         targetSdkVersion appAndroidTargetSDK
     }
 
+    //bang's: CI signs test builds with a fixed key (DEBUG_KEYSTORE_PATH) so new APKs install as updates
+    signingConfigs {
+        debug {
+            if (System.getenv("DEBUG_KEYSTORE_PATH") != null) {
+                storeFile file(System.getenv("DEBUG_KEYSTORE_PATH"))
+                storePassword 'android'
+                keyAlias 'androiddebugkey'
+                keyPassword 'android'
+            }
+        }
+    }
+
     buildTypes {
         debug {
+            signingConfig signingConfigs.debug
             applicationIdSuffix ".indev"
             versionNameSuffix '-INDEV'
             dependencies {
