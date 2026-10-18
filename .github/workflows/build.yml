@@ -53,3 +53,41 @@ jobs:
         with:
           name: windows-exe
           path: desktop/build/jpackage/
+
+  # bang's: put the latest builds on a "latest" release so they can be downloaded
+  # directly (apk is a plain file, no zip) from a fixed link
+  release:
+    if: github.ref == 'refs/heads/master'
+    needs: [android, windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dl
+      - name: Prepare files
+        run: |
+          mkdir out
+          cp "$(find dl/android-apk -name '*.apk' | head -1)" out/bangs-pixel-dungeon.apk
+          (cd dl/windows-exe && zip -qr ../../out/bangs-pixel-dungeon-windows.zip .)
+          ls -l out
+      - name: Update "latest" release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git tag -f latest
+          git push -f origin latest
+          NOTES="최신 테스트 빌드 (자동 업데이트)
+          커밋: ${GITHUB_SHA::7} - $(git log -1 --pretty=%s)
+          빌드 시각: $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST
+
+          - 안드로이드: bangs-pixel-dungeon.apk 받아서 바로 설치
+          - 윈도우: bangs-pixel-dungeon-windows.zip 압축 풀고 BangPixelDungeon.exe 실행"
+          if gh release view latest >/dev/null 2>&1; then
+            gh release edit latest --title "최신 테스트 빌드" --notes "$NOTES" --prerelease
+          else
+            gh release create latest --title "최신 테스트 빌드" --notes "$NOTES" --prerelease
+          fi
+          gh release upload latest out/bangs-pixel-dungeon.apk out/bangs-pixel-dungeon-windows.zip --clobber
