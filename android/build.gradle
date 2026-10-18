@@ -29,7 +29,7 @@ android {
             versionNameSuffix '-INDEV'
             dependencies {
                 debugImplementation project(':services:updates:debugUpdates')
-                debugImplementation project(':services:news:debugNews')
+                debugImplementation project(':services:news:shatteredNews') //bang's: real notices in test builds too
             }
         }
         release {

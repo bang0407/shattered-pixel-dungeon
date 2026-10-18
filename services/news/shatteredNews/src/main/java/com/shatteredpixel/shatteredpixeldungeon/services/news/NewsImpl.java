@@ -23,14 +23,14 @@ package com.shatteredpixel.shatteredpixeldungeon.services.news;
 
 public class NewsImpl {
 
-	private static NewsService newsChecker = new ShatteredNews();
+	private static NewsService newsChecker = new GitHubNews(); //bang's: notices from GitHub issues
 
 	public static NewsService getNewsService(){
 		return newsChecker;
 	}
 
 	public static boolean supportsNews(){
-		return false; //disabled: these point at the original game's servers
+		return true;
 	}
 
 }
