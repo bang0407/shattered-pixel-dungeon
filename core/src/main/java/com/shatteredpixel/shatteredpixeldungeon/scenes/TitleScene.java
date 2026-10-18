@@ -49,6 +49,7 @@ import com.watabou.glwrap.Blending;
 import com.watabou.input.PointerEvent;
 import com.watabou.noosa.BitmapText;
 import com.watabou.noosa.Camera;
+import com.watabou.noosa.ColorBlock;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.PointerArea;
@@ -361,24 +362,38 @@ public class TitleScene extends PixelScene {
 
 		int unreadCount = -1;
 
+		//bang's: red dot on the button while there are unread notices
+		private ColorBlock dot;
+
+		@Override
+		protected void createChildren() {
+			super.createChildren();
+			dot = new ColorBlock(4, 4, 0xFFFF2222);
+			dot.visible = false;
+			add(dot);
+		}
+
+		@Override
+		protected void layout() {
+			super.layout();
+			dot.x = x + width - dot.width() - 2;
+			dot.y = y + 2;
+			PixelScene.align(dot);
+		}
+
 		@Override
 		public void update() {
 			super.update();
 
 			if (unreadCount == -1 && News.articlesAvailable()){
-				long lastRead = SPDSettings.newsLastRead();
-				if (lastRead == 0){
-					if (News.articles().get(0) != null) {
-						SPDSettings.newsLastRead(News.articles().get(0).date.getTime());
-					}
-				} else {
-					unreadCount = News.unreadArticles(new Date(SPDSettings.newsLastRead()));
-					if (unreadCount > 0) {
-						unreadCount = Math.min(unreadCount, 9);
-						text(text() + "(" + unreadCount + ")");
-					}
+				//bang's: notices posted before the first launch also count as new
+				unreadCount = News.unreadArticles(new Date(SPDSettings.newsLastRead()));
+				if (unreadCount > 0) {
+					unreadCount = Math.min(unreadCount, 9);
+					text(text() + "(" + unreadCount + ")");
 				}
 			}
+			dot.visible = unreadCount > 0;
 
 			if (unreadCount > 0){
 				textColor(ColorMath.interpolate( 0xFFFFFF, Window.SHPX_COLOR, 0.5f + (float)Math.sin(Game.timeTotal*5)/2f));

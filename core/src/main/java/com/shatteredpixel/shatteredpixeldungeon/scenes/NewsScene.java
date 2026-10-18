@@ -117,7 +117,8 @@ public class NewsScene extends PixelScene {
 				rows--;
 			}
 
-			float gap = ((articleSpace) - (BTN_HEIGHT * rows)) / (float)rows;
+			//bang's: list notices from the top instead of spreading them over the whole screen
+			float gap = 2;
 
 			boolean rightCol = false;
 			for (NewsArticle article : articles) {
@@ -149,7 +150,7 @@ public class NewsScene extends PixelScene {
 			@Override
 			protected void onClick() {
 				super.onClick();
-				ShatteredPixelDungeon.platform.openURI("https://ShatteredPixel.com");
+				ShatteredPixelDungeon.platform.openURI("https://github.com/bang0407/shattered-pixel-dungeon/issues?q=label%3A%EA%B3%B5%EC%A7%80");
 			}
 		};
 		btnSite.icon(Icons.get(Icons.NEWS));
@@ -268,7 +269,7 @@ public class NewsScene extends PixelScene {
 
 			icon(News.parseArticleIcon(article));
 			long lastRead = SPDSettings.newsLastRead();
-			if (lastRead > 0 && article.date.getTime() > lastRead) {
+			if (article.date.getTime() > lastRead) {
 				textColor(Window.SHPX_COLOR);
 			}
 
